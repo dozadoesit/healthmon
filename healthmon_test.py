@@ -35,7 +35,7 @@ def BMR(weight,height,age): #calculates BMR and returns it as a float.
     return BMR
 
 def cls(): #clears the screen for CLI implementations *remove
-    print "\n" * 100
+    print("\n" * 100)
     
 def new_day(): #determines if this a new day file needs to be created
     if os.path.exists(datetime.datetime.now().strftime("%B%d%Y")+".csv") == True:
@@ -117,7 +117,7 @@ def graph(nomonths):
                 worklist.append(int(wrklst))
                 projects.append(int(prjt))
         else:
-            error = raw_input(' could not find the'+item+'in Archive or in'+getprevyear()+'press any key to close')
+            error = input(' could not find the'+item+'in Archive or in'+getprevyear()+'press any key to close')
             
             myday()
             main()
@@ -198,21 +198,22 @@ def food_dict_get(food,amount): #searches through food dictionary returns string
     msg='pick a food from the list'
     command = choicebox(msg, title, choices)
     if command == 'Add more choices':
-		add_to_fooddict(food,amount)
-    food_Dict = open('Food_Dictionary.csv', 'r')
-    for item in food_Dict:
-        item = item.split(',')
-        if 'Food' in item:
-            continue
-        if command == item[0] and int(item[3]) != 0:
-            if value == 'servings':
-                amount = float(item[3]) * float(amount.strip('s*'))
-                calories = amount * int(item[2])
+        add_to_fooddict(food,amount)
+    else:
+        food_Dict = open('Food_Dictionary.csv', 'r')
+        for item in food_Dict:
+            item = item.split(',')
+            if 'Food' in item:
+                continue
+            if command == item[0] and int(item[3]) != 0:
+                if value == 'servings':
+                    amount = float(item[3]) * float(amount.strip('s*'))
+                    calories = amount * int(item[2])
+                    food_Dict.close()
+                    return command+','+','+str(calories)
+            elif int(item[3]) == 0:
                 food_Dict.close()
-                return command+','+','+str(calories)
-        elif int(item[3]) == 0:
-            food_Dict.close()
-            main(3)
+                main(3)
 
 def food_Journal_get_cals(): ##go through the food journal add up all the calories and return the total
     global foodjournal
@@ -234,16 +235,16 @@ def main(error): #main loop
     global profile
     #Error handling#
     if error == 1:
-        print "Sorry that food doesn't exist in the dictionary please add it"
-        print ""
+        print("Sorry that food doesn't exist in the dictionary please add it")
+        print("")
     if error == 2:
-        print "It looks like you didn't specify a serving value"
+        print("It looks like you didn't specify a serving value")
     if error == 3:
-        print "oops we don't have a value prefix"
+        print("oops we don't have a value prefix")
     if error == 4:
-        print "log for today already exists"
+        print("log for today already exists")
     if error == 5:
-        print "couldn't create new log file"
+        print("couldn't create new log file")
     #Error handling#
 
     if os.path.isfile(profile) == False: #do we need a new profile?
@@ -269,7 +270,7 @@ def main(error): #main loop
     try:
         foodjournal = open(datetime.datetime.now().strftime("%B%d%Y")+".csv", 'r') 
         for item in foodjournal:
-                print item
+                print(item)
     except:
             new_day()
     #This is going to be moved into the log window
@@ -297,7 +298,7 @@ def main(error): #main loop
         exercise = False
     basecalsstr = 'base starting calories is '+str(Base)+ ' kcal'
     calories = food_Journal_get_cals()
-    print stepsval
+    print(stepsval)
     NewBase = float(Base) - float(calories) - weightloss(factor) + (stepsval*0.01)
     calsconsumed = 'total calories consumed today '+str(calories)+' kcal'
     #print how many calories you have burned resting so far
@@ -320,7 +321,7 @@ def main(error): #main loop
         modetext = 'weightloss mode is: beast mode'
     if factor == '4':
         modetext = 'weightloss mode is: fucking scary ass spider mode'
-    print ""
+    print("")
     
     #add to log window
     if os.path.exists('statsfile.csv') == True:
@@ -352,7 +353,7 @@ def main(error): #main loop
         cls()
         main(0)
     if command == 'exercise':
-        value = raw_input('enter exercise calories ')
+        value = input('enter exercise calories ')
         statsfile = open('statsfile.csv', 'a')
         statsfile.write('exercise,'+datetime.datetime.now().strftime("%B%d%Y")+','+value+'\n')
         statsfile.close()
@@ -394,7 +395,7 @@ def main(error): #main loop
             food = multenterbox(msg='add food', title=' ', fields=['food','amount'], values=['','s* oz* g*'])
             entry = food_dict_get(food[0],food[1])
         if command == 'exit':
-			sys.exit()
+            sys.exit()
         if entry == None:
             cls()
             main(1)
