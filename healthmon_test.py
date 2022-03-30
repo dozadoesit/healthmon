@@ -229,7 +229,7 @@ def food_Journal_get_cals(): ##go through the food journal add up all the calori
 	return total
 
 def itctlsteps(): # get steps from itctl
-	steps = subprocess.run("itctl get steps > steps.txt", capture_output=True)
+	steps = subprocess.run("itctl get steps", capture_output=True)
 	return steps
 
 
@@ -240,7 +240,16 @@ def add_steps(steps): # add steps to stats file
 		value = item.split(',')
 		stepsval = int(value[2].strip('\n'))
 		if stepsval > steps:
-			main(6)
+			ynbox("steps already logged {0} steps on watch {1} should I add the values? ".format(stepsval, steps))
+			if ynbox == 1:
+				statsfile.close()
+				steps = str(int(stepsval) + int(steps)) # convert to int add and then convert back to str
+				statsfile = open('statsfile.csv', 'a')
+				statsfile.write('steps,' + datetime.datetime.now().strftime("%B%d%Y") + ',' + steps + '\n')
+				statsfile.close()
+				main(0)
+			else:
+				main(6)
 		else:
 			statsfile.close()
 			statsfile = open('statsfile.csv', 'a')
@@ -266,18 +275,17 @@ def main(error): #main loop
 	global profile
 	#Error handling#
 	if error == 1:
-		print("Sorry that food doesn't exist in the dictionary please add it")
-		print("")
+		msgbox("Sorry that food doesn't exist in the dictionary please add it")
 	if error == 2:
-		print("It looks like you didn't specify a serving value")
+		msgbox("It looks like you didn't specify a serving value")
 	if error == 3:
-		print("oops we don't have a value prefix")
+		msgbox("oops we don't have a value prefix")
 	if error == 4:
-		print("log for today already exists")
+		msgbox("log for today already exists")
 	if error == 5:
-		print("couldn't create new log file")
+		msgbox("couldn't create new log file")
 	if error == 6:
-		print("it looks like your watch got cleared no steps added")
+		msgbox("it looks like your watch got cleared no steps added")
 	#Error handling#
 
 	if os.path.isfile(profile) == False: #do we need a new profile?
