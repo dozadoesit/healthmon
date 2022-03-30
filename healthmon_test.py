@@ -12,7 +12,7 @@ Base = 0
 profile = 'me.txt'
 Log = 'progress.txt'
 foodjournal = datetime.datetime.now().strftime("%B%d%Y")+".csv"
-version = 'alpha.3.11.21.2019'
+version = 'alpha.3.30.2022'
 #weight now updates live
 #steps tracking need a lot more work
 #add food should not crash if there are no results and it should display there are no results.
