@@ -4,6 +4,8 @@ import datetime
 import os
 
 # import matplotlib.pyplot as plt
+import subprocess
+
 import numpy as np
 from easygui import *
 
@@ -226,6 +228,37 @@ def food_Journal_get_cals(): ##go through the food journal add up all the calori
 	foodjournal.close()
 	return total
 
+def itctlsteps(): # get steps from itctl
+	steps = subprocess.run("itctl get steps > steps.txt", capture_output=True)
+	return steps
+
+
+def add_steps(steps): # add steps to stats file
+	# test to make sure we are not breaking anything
+	statsfile = open('statsfile.csv', 'r')
+	if datetime.datetime.now().strftime("%B%d%Y") in item and 'steps' in item:
+		value = item.split(',')
+		stepsval = int(value[2].strip('\n'))
+		if stepsval > steps:
+			main(6)
+		else:
+			statsfile.close()
+			statsfile = open('statsfile.csv', 'a')
+			statsfile.write('steps,' + datetime.datetime.now().strftime("%B%d%Y") + ',' + steps + '\n')
+			statsfile.close()
+			main(0)
+	else: # no stats yet just write what we got
+		statsfile.close()
+		statsfile = open('statsfile.csv', 'a')
+		statsfile.write('steps,' + datetime.datetime.now().strftime("%B%d%Y") + ',' + steps + '\n')
+		statsfile.close()
+		main(0)
+	statsfile = open('statsfile.csv', 'a')
+	statsfile.write('steps,' + datetime.datetime.now().strftime("%B%d%Y") + ',' + steps + '\n')
+	statsfile.close()
+	main(0)
+
+
 def main(error): #main loop
 	global foodjournal
 	global runonce
@@ -243,6 +276,8 @@ def main(error): #main loop
 		print("log for today already exists")
 	if error == 5:
 		print("couldn't create new log file")
+	if error == 6:
+		print("it looks like your watch got cleared no steps added")
 	#Error handling#
 
 	if os.path.isfile(profile) == False: #do we need a new profile?
@@ -337,7 +372,7 @@ def main(error): #main loop
 
 	#Main Window#
 	message = weight+'\n'+basecalsstr+'\n'+calsconsumed+'\n'+calssofar+'\n'+'calories left today: %s' % (NewBase)+'\n'+steps+'\n'+modetext
-	command = buttonbox(msg=message, title='healthmon Overview'+version, choices=('log', 'refresh', 'stats','exit'), image='images/'+zone,)
+	command = buttonbox(msg=message, title='healthmon Overview'+version, choices=('log', 'refresh', 'stats', 'sync pinetime', 'exit'), image='images/'+zone,)
 	#End Main Window#
 
 
@@ -350,6 +385,11 @@ def main(error): #main loop
 		msgbox('I am so sad right now')
 		cls()
 		main(0)
+	if command == 'sync pinetime':
+		steps_raw = itctlsteps()
+		steps_split = steps_raw.split(' ')
+		step_val = steps_split[0]
+		add_steps(step_val)
 	if command == 'exercise':
 		value = input('enter exercise calories ')
 		statsfile = open('statsfile.csv', 'a')
@@ -362,12 +402,9 @@ def main(error): #main loop
 		command = buttonbox(msg=message, title='healthmon Log '+version, choices=('add food', 'add exercise', 'add steps', 'complete log', 'add weight', 'stats', 'done'), image='images/notebook01.png')
 		if command == 'done':
 			main(0)
-		if command == 'add steps':
-			value = enterbox(msg='enter the amount of steps')
-			statsfile = open('statsfile.csv', 'a')
-			statsfile.write('steps,'+datetime.datetime.now().strftime("%B%d%Y")+','+value+'\n')
-			statsfile.close()
-			main(0)
+		if command == 'add steps': # change steps manually
+			step_val = enterbox(msg='enter the amount of steps')
+			add_steps(step_val)
 		if command == 'add weight':
 			## working on this
 			weighin = multenterbox(msg='weigh in', title='weigh in', fields=['weight','body fat'])
