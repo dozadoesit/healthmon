@@ -231,9 +231,9 @@ def food_Journal_get_cals(): ##go through the food journal add up all the calori
 
 def itctlsteps(): # get steps from itctl return as string
 	steps_raw = subprocess.run(['itctl', 'get', 'steps'], capture_output=True) # raw data
-	step_string = str(steps.stdout) # convert bytes to string
+	step_string = str(steps_raw.stdout) # convert bytes to string
 	steps_val = re.findall("\d+", step_string)[0] # target only the numbers
-	return steps
+	return steps_val
 
 
 def add_steps(steps): # add steps to stats file
