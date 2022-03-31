@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5b9823df-d68c-4183-9ccb-23467a401fc0" name="Changes" comment="update itctl fetch to get the value and convert it to a string before passing it off">
+    <list default="true" id="5b9823df-d68c-4183-9ccb-23467a401fc0" name="Changes" comment="corrected issues with syncing from pinetime and adding steps">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/healthmon_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/healthmon_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ideas" beforeDir="false" afterPath="$PROJECT_DIR$/ideas" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +84,21 @@
       <option name="project" value="LOCAL" />
       <updated>1648676375390</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixed issues with variable names in itctlsteps()">
+      <created>1648676525351</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1648676525351</updated>
+    </task>
+    <task id="LOCAL-00007" summary="corrected issues with syncing from pinetime and adding steps">
+      <created>1648685147840</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1648685147840</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -105,6 +119,8 @@
     <MESSAGE value="added syncing for pinetime" />
     <MESSAGE value="added the ability to add together the synced value and updated errors to message boxes" />
     <MESSAGE value="update itctl fetch to get the value and convert it to a string before passing it off" />
-    <option name="LAST_COMMIT_MESSAGE" value="update itctl fetch to get the value and convert it to a string before passing it off" />
+    <MESSAGE value="fixed issues with variable names in itctlsteps()" />
+    <MESSAGE value="corrected issues with syncing from pinetime and adding steps" />
+    <option name="LAST_COMMIT_MESSAGE" value="corrected issues with syncing from pinetime and adding steps" />
   </component>
 </project>
