@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5b9823df-d68c-4183-9ccb-23467a401fc0" name="Changes" comment="corrected issues with syncing from pinetime and adding steps" />
+    <list default="true" id="5b9823df-d68c-4183-9ccb-23467a401fc0" name="Changes" comment="updated ideas file" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648686167165</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="updated ideas file">
+      <created>1648690219421</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1648690219421</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -132,6 +139,7 @@
     <MESSAGE value="update itctl fetch to get the value and convert it to a string before passing it off" />
     <MESSAGE value="fixed issues with variable names in itctlsteps()" />
     <MESSAGE value="corrected issues with syncing from pinetime and adding steps" />
-    <option name="LAST_COMMIT_MESSAGE" value="corrected issues with syncing from pinetime and adding steps" />
+    <MESSAGE value="updated ideas file" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated ideas file" />
   </component>
 </project>
