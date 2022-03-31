@@ -1,3 +1,7 @@
 * graphing for weight vs % body fat
+* graphing for steps
+* setting of weight goals
+* estimated time to reach goals
+* modularize program so we don't have 1 file
 * better file managment
 * be able to write steps into the pinetime in case it was cleared

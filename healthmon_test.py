@@ -15,7 +15,7 @@ Base = 0
 profile = 'me.txt'
 Log = 'progress.txt'
 foodjournal = datetime.datetime.now().strftime("%B%d%Y")+".csv"
-version = 'alpha.3.30.2022'
+version = 'alpha.3.31.2022'
 # weight now updates live
 # steps tracking need a lot more work
 # add food should not crash if there are no results and it should display there are no results.
@@ -308,7 +308,7 @@ def main(error): #main loop
 	#building text for main window
 	if os.path.exists('statsfile.csv') == True:
 		stats = open('statsfile.csv', 'r')
-		steps = 'no steps today'
+		steps = 'steps: 0'
 		stepsval = 0
 		exercise = False
 		for item in stats:
@@ -319,7 +319,7 @@ def main(error): #main loop
 				exercisecals = "exercise calories " + exercise
 			if datetime.datetime.now().strftime("%B%d%Y") in item and 'steps' in item:
 				value = item.split(',')
-				steps = 'steps for the day '+value[2].strip('\n')
+				steps = 'steps: '+value[2].strip('\n')
 				stepsval = int(value[2].strip('\n'))
 		stats.close()
 	else:
@@ -328,7 +328,7 @@ def main(error): #main loop
 		exercise = False
 	basecalsstr = 'base starting calories is '+str(Base)+ ' kcal'
 	calories = food_Journal_get_cals()
-	print(stepsval)
+	# print(stepsval) Diagnostic
 	NewBase = float(Base) - float(calories) - weightloss(factor) + (stepsval*0.01)
 	calsconsumed = 'total calories consumed today '+str(calories)+' kcal'
 	#print how many calories you have burned resting so far
