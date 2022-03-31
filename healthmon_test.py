@@ -236,39 +236,23 @@ def itctlsteps(): # get steps from itctl return as string
 	return steps_val
 
 
-def add_steps(steps): # add steps to stats file
-	# test to make sure we are not breaking anything
-	statsfile = open('statsfile.csv', 'r')
-	if datetime.datetime.now().strftime("%B%d%Y") in item and 'steps' in item:
-		value = item.split(',')
-		stepsval = int(value[2].strip('\n'))
-		if stepsval > steps:
-			ynbox("steps already logged {0} steps on watch {1} should I add the values? ".format(stepsval, steps))
-			if ynbox == 1:
-				statsfile.close()
-				steps = str(int(stepsval) + int(steps)) # convert to int add and then convert back to str
-				statsfile = open('statsfile.csv', 'a')
-				statsfile.write('steps,' + datetime.datetime.now().strftime("%B%d%Y") + ',' + steps + '\n')
-				statsfile.close()
-				main(0)
-			else:
-				main(6)
-		else:
-			statsfile.close()
+def add_steps(steps_current, steps_add): # add steps to stats file
+	# sometimes the watch gets reset
+	if int(steps_current) > int(steps_add):
+		confirm = ynbox(" steps already logged: {0} \n steps on watch: {1} \n should I add the values? ".format(steps_current, steps_add))
+		if confirm == True:
+			newsteps = str(int(steps_current) + int(steps_add)) # convert to int add and then convert back to str
 			statsfile = open('statsfile.csv', 'a')
-			statsfile.write('steps,' + datetime.datetime.now().strftime("%B%d%Y") + ',' + steps + '\n')
+			statsfile.write('steps,' + datetime.datetime.now().strftime("%B%d%Y") + ',' + newsteps + '\n')
 			statsfile.close()
-			main(0)
-	else: # no stats yet just write what we got
-		statsfile.close()
+			main(6)
+		else:
+			main(7)
+	else:
 		statsfile = open('statsfile.csv', 'a')
-		statsfile.write('steps,' + datetime.datetime.now().strftime("%B%d%Y") + ',' + steps + '\n')
+		statsfile.write('steps,' + datetime.datetime.now().strftime("%B%d%Y") + ',' + steps_add + '\n')
 		statsfile.close()
 		main(0)
-	statsfile = open('statsfile.csv', 'a')
-	statsfile.write('steps,' + datetime.datetime.now().strftime("%B%d%Y") + ',' + steps + '\n')
-	statsfile.close()
-	main(0)
 
 
 def main(error): #main loop
@@ -288,6 +272,8 @@ def main(error): #main loop
 	if error == 5:
 		msgbox("couldn't create new log file")
 	if error == 6:
+		msgbox("steps added, you should clear your watch or manually add steps see readme")
+	if error == 7:
 		msgbox("it looks like your watch got cleared no steps added")
 	#Error handling#
 
@@ -400,7 +386,8 @@ def main(error): #main loop
 		steps_raw = itctlsteps()
 		steps_split = steps_raw.split(' ')
 		step_val = steps_split[0]
-		add_steps(step_val)
+		steps_num = re.findall("\d+", steps)[0] # target only the numbers
+		add_steps(steps_num, step_val) # steps_current, steps_add
 	if command == 'exercise':
 		value = input('enter exercise calories ')
 		statsfile = open('statsfile.csv', 'a')
@@ -415,7 +402,7 @@ def main(error): #main loop
 			main(0)
 		if command == 'add steps': # change steps manually
 			step_val = enterbox(msg='enter the amount of steps')
-			add_steps(step_val)
+			add_steps(steps, step_val) # steps_current, steps_add
 		if command == 'add weight':
 			## working on this
 			weighin = multenterbox(msg='weigh in', title='weigh in', fields=['weight','body fat'])
