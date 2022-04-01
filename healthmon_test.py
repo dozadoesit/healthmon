@@ -392,10 +392,15 @@ def main(error):  # main loop
     message = weight + '\n' + basecalsstr + '\n' + calsconsumed + '\n' + calssofar + '\n' + 'calories left today: %s' % (
         NewBase) + '\n' + steps + '\n' + modetext
     command = buttonbox(msg=message, title='healthmon Overview' + version,
-                        choices=('log', 'refresh', 'stats', 'sync pinetime', 'exit'), image='images/' + zone, )
+                        choices=('log', 'refresh', 'stats', 'sync pinetime', 'modify plan', 'exit'), image='images/' + zone, )
     # End Main Window#
 
     # button actions
+	if command == 'modify plan':
+		values = multenterbox(msg=message, fields=['weight', 'height', 'age', 'activityLVL'],
+							  title=version + ' profile setup')
+		profilesetup(values[0], values[1], values[2], values[3])
+		main(0)
     if command == 'refresh':
         cls()
         main(0)
@@ -421,6 +426,9 @@ def main(error):  # main loop
         command = buttonbox(msg=message, title='healthmon Log ' + version, choices=(
         'add food', 'add exercise', 'add steps', 'complete log', 'add weight', 'stats', 'done'),
                             image='images/notebook01.png')
+        if command == 'add exercise':
+			msgbox('I do nothing')
+			main(0)
         if command == 'done':
             main(0)
         if command == 'add steps':  # change steps manually

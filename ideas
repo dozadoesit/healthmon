@@ -4,4 +4,5 @@
 * estimated time to reach goals
 * modularize program so we don't have 1 file
 * better file managment
-* be able to write steps into the pinetime in case it was cleared
+* food should be editable after it was entered
+* a way to update the dictionary without opening the csv
