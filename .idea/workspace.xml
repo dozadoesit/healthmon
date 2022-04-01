@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5b9823df-d68c-4183-9ccb-23467a401fc0" name="Changes" comment="add new ideas to the list" />
+    <list default="true" id="5b9823df-d68c-4183-9ccb-23467a401fc0" name="Changes" comment="update ideas, increment version, correct an issue with sync">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/healthmon_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/healthmon_test.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="python3conversion" />
+    <option name="BRANCH" value="itd-integration" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="python3conversion" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,7 +63,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648647852657</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update ideas, increment version, correct an issue with sync">
+      <created>1648738625683</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1648738625683</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -78,6 +88,7 @@
     <MESSAGE value="uptick version add unversioned files." />
     <MESSAGE value="code cleanup and fix of linted errors" />
     <MESSAGE value="add new ideas to the list" />
-    <option name="LAST_COMMIT_MESSAGE" value="add new ideas to the list" />
+    <MESSAGE value="update ideas, increment version, correct an issue with sync" />
+    <option name="LAST_COMMIT_MESSAGE" value="update ideas, increment version, correct an issue with sync" />
   </component>
 </project>
