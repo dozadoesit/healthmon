@@ -473,9 +473,6 @@ def main(error):  # main loop
             entry = food_dict_get(food[0], food[1])
         if command == 'exit':
             sys.exit()
-        if entry == None:
-            cls()
-            main(1)
         else:
             foodjournal.write(entry + '\n')
             cls()
