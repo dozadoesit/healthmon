@@ -15,7 +15,7 @@ Base = 0
 profile = 'me.txt'
 Log = 'progress.txt'
 foodjournal = datetime.datetime.now().strftime("%B%d%Y") + ".csv"
-version = 'alpha.3.31.2022'
+version = 'alpha.4.5.2022'
 
 
 # weight now updates live
