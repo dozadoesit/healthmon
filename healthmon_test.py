@@ -169,9 +169,15 @@ def profilesetup(weight, height, age, activityLVL):  # sets up a new profile and
 
 def add_to_fooddict(food,
                     amount):  # take the food and amount passed from food dict get and give the user the option to add it to the dictionary
-    data = multenterbox(msg='add new food', fields=['food', 'brand', 'amount'], values=[food, '', amount],
+    data = multenterbox(msg='add new food', fields=['food', 'brand', 'servings', 'calories'], values=[food, '', amount],
                         title=version + ' add food to the dicionary')
-    main(0)
+    if data is None:
+        main(0)
+    else:
+        journalfile = open("Food_Dictionary.csv", 'a')
+        journalfile.write("{0},{1},{2},{3},0,0,0".format(data[0], data[1], data[3], data[2]))
+        journalfile.close()
+        main(0)
 
 
 def food_dict_get(food, amount):  # searches through food dictionary returns string of the item and calorie
@@ -209,8 +215,11 @@ def food_dict_get(food, amount):  # searches through food dictionary returns str
     title = 'food picker %s' % (version)
     msg = 'pick a food from the list'
     command = choicebox(msg, title, choices)
+    if command is None:
+        main(0)
     if command == 'Add more choices':
-        add_to_fooddict(food, amount)
+        numeral_amount = re.findall(r'\d+', amount)
+        add_to_fooddict(food, numeral_amount)
     else:
         food_Dict = open('Food_Dictionary.csv', 'r')
         for item in food_Dict:
@@ -392,15 +401,18 @@ def main(error):  # main loop
     message = weight + '\n' + basecalsstr + '\n' + calsconsumed + '\n' + calssofar + '\n' + 'calories left today: %s' % (
         NewBase) + '\n' + steps + '\n' + modetext
     command = buttonbox(msg=message, title='healthmon Overview' + version,
-                        choices=('log', 'refresh', 'stats', 'sync pinetime', 'modify plan', 'exit'), image='images/' + zone, )
+                        choices=('log', 'refresh', 'stats', 'sync pinetime', 'modify plan', 'exit'),
+                        image='images/' + zone, )
     # End Main Window#
 
     # button actions
-	if command == 'modify plan':
-		values = multenterbox(msg=message, fields=['weight', 'height', 'age', 'activityLVL'],
-							  title=version + ' profile setup')
-		profilesetup(values[0], values[1], values[2], values[3])
-		main(0)
+    if command == 'modify plan':
+        values = multenterbox(msg=message, fields=['weight', 'height', 'age', 'activityLVL'],
+                              title=version + ' profile setup')
+        if values is None:
+            main(0)
+        profilesetup(values[0], values[1], values[2], values[3])
+        main(0)
     if command == 'refresh':
         cls()
         main(0)
@@ -424,11 +436,11 @@ def main(error):  # main loop
     if command == 'log':  # show the food log so far as well as the current weigh and other useful information while logging.
         message = basecalsstr + '\n' + calsconsumed + '\n' + calssofar + '\n' + steps
         command = buttonbox(msg=message, title='healthmon Log ' + version, choices=(
-        'add food', 'add exercise', 'add steps', 'complete log', 'add weight', 'stats', 'done'),
+            'add food', 'add exercise', 'add steps', 'complete log', 'add weight', 'stats', 'done'),
                             image='images/notebook01.png')
         if command == 'add exercise':
-			msgbox('I do nothing')
-			main(0)
+            msgbox('I do nothing')
+            main(0)
         if command == 'done':
             main(0)
         if command == 'add steps':  # change steps manually
