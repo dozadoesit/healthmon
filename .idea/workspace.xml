@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5b9823df-d68c-4183-9ccb-23467a401fc0" name="Changes" comment="add the ability to fix step count manually.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="5b9823df-d68c-4183-9ccb-23467a401fc0" name="Changes" comment="add feature to add food to dictionary, cleanup code issues, fix the modify plan command">
       <change beforePath="$PROJECT_DIR$/healthmon_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/healthmon_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +76,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648836772142</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add feature to add food to dictionary, cleanup code issues, fix the modify plan command">
+      <created>1649210045470</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1649210045470</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -97,14 +103,15 @@
     <MESSAGE value="add new ideas to the list" />
     <MESSAGE value="update ideas, increment version, correct an issue with sync" />
     <MESSAGE value="add the ability to fix step count manually." />
-    <option name="LAST_COMMIT_MESSAGE" value="add the ability to fix step count manually." />
+    <MESSAGE value="add feature to add food to dictionary, cleanup code issues, fix the modify plan command" />
+    <option name="LAST_COMMIT_MESSAGE" value="add feature to add food to dictionary, cleanup code issues, fix the modify plan command" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/healthmon_test.py</url>
-          <line>220</line>
+          <line>221</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

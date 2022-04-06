@@ -177,6 +177,7 @@ def add_to_fooddict(food,
         journalfile = open("Food_Dictionary.csv", 'a')
         journalfile.write("{0},{1},{2},{3},0,0,0".format(data[0], data[1], data[3], data[2]))
         journalfile.close()
+        msgbox("entry added")
         main(0)
 
 
